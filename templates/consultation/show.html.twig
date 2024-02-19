@@ -16,6 +16,7 @@
                 <td>{{ consultation.dateConsultation }}</td>
             </tr>
          
+         
         </tbody>
     </table>
 
@@ -24,4 +25,5 @@
     <a href="{{ path('app_consultation_edit', {'id': consultation.id}) }}">edit</a>
 
     {{ include('consultation/_delete_form.html.twig') }}
+    
 {% endblock %}

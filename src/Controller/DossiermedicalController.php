@@ -72,6 +72,7 @@ class DossiermedicalController extends AbstractController
     public function delete(Request $request, Dossiermedical $dossiermedical, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete'.$dossiermedical->getId(), $request->request->get('_token'))) {
+            $dossiermedical->setPatient(null);
             $entityManager->remove($dossiermedical);
             $entityManager->flush();
         }

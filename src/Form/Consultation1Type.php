@@ -15,7 +15,7 @@ class Consultation1Type extends AbstractType
             ->add('date_consultation')
             ->add('patient')
             ->add('Docteur')
-            //->add('dossiermedical')
+            ->add('dossiermedical')
         ;
     }
 

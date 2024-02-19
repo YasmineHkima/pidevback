@@ -6,7 +6,7 @@
     <h1>Consultation index</h1>
 <br><br><br><br><br>
 <center>
-
+  
  <a class="fcc_btn" style=" border:none; background-color: cadetblue; color:#fff; padding:10px 20px; font-size:16px; margin:20px; cursor: pointer;" href="{{ url('app_consultation_telecons') }}">Teleconsultation</a>
                  <a class="fcc_btn" style=" border:none; background-color: cadetblue; color:#fff; padding:10px 20px; font-size:16px; margin:20px; cursor: pointer;" href="{{ url('app_consultation_new') }}">One to one consultation</a>
                  <a class="fcc_btn" style=" border:none; background-color: cadetblue; color:#fff; padding:10px 20px; font-size:16px; margin:20px; cursor: pointer;"href="{{ url('app_consultation_new') }}">Image recognition</a>
@@ -29,7 +29,7 @@
         <h2>This is an article created by our precious members</h2>
                 <img src="/images/health_worker.svg" alt="Description" width="300" height="200" margin-top= "60px" margin-bottom= "60px">
 
-        <p>Pour les situations constituant une URGENCE, nous vous recommandons d’appeler un service d’urgences ou bien e vous adresser au service d’urgence le plus proche de vous.</p>
+        <p>My experience with the Dentist was amazingly unforgettable, i would recommand noTreatment</p>
     </div>
     </td>
     
@@ -39,7 +39,7 @@
         <h2>This is an article created by our precious members</h2>
                         <img src="/images/telecons.svg" alt="Description" width="300" height="200">
 
-        <p>Pour les situations constituant une URGENCE, nous vous recommandons d’appeler un service d’urgences ou bien e vous adresser au service d’urgence le plus proche de vous.</p>
+        <p>Video Consultation is a life and time saving, no queue waiting. Thank you</p>
     </div>
     </td>
      <td>
@@ -48,7 +48,7 @@
         <h2>This is an article created by our precious members</h2>
                         <img src="/images/dossier_med.svg" alt="Description" width="300" height="200">
 
-        <p>Pour les situations constituant une URGENCE, nous vous recommandons d’appeler un service d’urgences ou bien e vous adresser au service d’urgence le plus proche de vous.</p>
+        <p>I'm more comfortable with my health because i feel safe using these organized doc schedules</p>
     </div>
     </td>
                         </tr>
@@ -62,6 +62,29 @@
 </div>
 
 
+ <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for consultation in consultations %}
+            <tr>
+                <td>{{ consultation.id }}</td>
+                <td>
+                    <a href="{{ path('app_consultation_show', {'id': consultation.id}) }}">show</a>
+                    <a href="{{ path('app_consultation_edit', {'id': consultation.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="2">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
    
 
     {% block js %}

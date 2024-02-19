@@ -20,8 +20,8 @@ class Consultation
     #[ORM\OneToOne(cascade: ['persist', 'remove'])]
     private ?Docteur $Docteur = null;
 
-    //#[ORM\ManyToOne(inversedBy: 'consultations')]
-    //private ?Dossiermedical $dossiermedical = null;
+    #[ORM\ManyToOne(inversedBy: 'consultations')]
+    private ?Dossiermedical $dossiermedical = null;
 
     #[ORM\Column(length: 255)]
     #[Assert\NotBlank(message:"La date ne peut pas être vide")]
@@ -68,7 +68,7 @@ class Consultation
         return $this;
     }
 
-    /*public function getDossiermedical(): ?Dossiermedical
+    public function getDossiermedical(): ?Dossiermedical
     {
         return $this->dossiermedical;
     }
@@ -79,7 +79,7 @@ class Consultation
 
         return $this;
     }
-*/
+
     public function getDateConsultation(): ?string
     {
         return $this->date_consultation;
