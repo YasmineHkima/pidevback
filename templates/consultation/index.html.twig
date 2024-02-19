@@ -1,0 +1,115 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Consultation index{% endblock %}
+
+{% block body %}
+    <h1>Consultation index</h1>
+<br><br><br><br><br>
+<center>
+
+ <a class="fcc_btn" style=" border:none; background-color: cadetblue; color:#fff; padding:10px 20px; font-size:16px; margin:20px; cursor: pointer;" href="{{ url('app_consultation_telecons') }}">Teleconsultation</a>
+                 <a class="fcc_btn" style=" border:none; background-color: cadetblue; color:#fff; padding:10px 20px; font-size:16px; margin:20px; cursor: pointer;" href="{{ url('app_consultation_new') }}">One to one consultation</a>
+                 <a class="fcc_btn" style=" border:none; background-color: cadetblue; color:#fff; padding:10px 20px; font-size:16px; margin:20px; cursor: pointer;"href="{{ url('app_consultation_new') }}">Image recognition</a>
+                 <div class="article" style="background-color: #f2f2f2;margin-top: 60px;margin-bottom: 30px; padding: 20px; border-radius: 5px; width:400px; heigth:200px ">
+                        <img src="/images/urgent.svg" alt="Description" width="100" height="100" margin-top= "60px" margin-bottom= "360px">
+
+        <p>Pour les situations constituant une URGENCE, nous vous recommandons d’appeler un service d’urgences ou bien e vous adresser au service d’urgence le plus proche de vous.</p>
+                  </div> 
+                  <h1>Blog</h1>
+    
+   
+    
+        <table>
+
+<tbody>
+
+            <tr>
+            <td>
+    <div class="article" style="background-color: #f2f2f2; padding: 20px; border-radius: 5px; width:400px; heigth:900px ">
+        <h2>This is an article created by our precious members</h2>
+                <img src="/images/health_worker.svg" alt="Description" width="300" height="200" margin-top= "60px" margin-bottom= "60px">
+
+        <p>Pour les situations constituant une URGENCE, nous vous recommandons d’appeler un service d’urgences ou bien e vous adresser au service d’urgence le plus proche de vous.</p>
+    </div>
+    </td>
+    
+              <td>
+
+    <div class="article" style="background-color: #f2f2f2; padding: 20px; border-radius: 5px; width:400px; heigth:200px ">
+        <h2>This is an article created by our precious members</h2>
+                        <img src="/images/telecons.svg" alt="Description" width="300" height="200">
+
+        <p>Pour les situations constituant une URGENCE, nous vous recommandons d’appeler un service d’urgences ou bien e vous adresser au service d’urgence le plus proche de vous.</p>
+    </div>
+    </td>
+     <td>
+
+    <div class="article" style="background-color: #f2f2f2; padding: 20px; border-radius: 5px; width:400px; heigth:200px ">
+        <h2>This is an article created by our precious members</h2>
+                        <img src="/images/dossier_med.svg" alt="Description" width="300" height="200">
+
+        <p>Pour les situations constituant une URGENCE, nous vous recommandons d’appeler un service d’urgences ou bien e vous adresser au service d’urgence le plus proche de vous.</p>
+    </div>
+    </td>
+                        </tr>
+
+         
+        </tbody>
+            </table>
+                </center>
+
+
+</div>
+
+
+   
+
+    {% block js %}
+  <script src='{{asset('js/telecons.js')}}'></script>
+
+
+{% endblock %}
+ <div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
+        <div style="background-color: #f0f0f0; border: 1px solid #ccc; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); max-width: 400px;">
+            <h1 style="text-align: center;">Statistics</h1>
+            <canvas id="statisticsChart" width="400" height="400"></canvas>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var statisticsData = {{ statisticsJson | raw }};
+            var ctx = document.getElementById('statisticsChart').getContext('2d');
+            var myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Online consultation', 'One to One consultation'],
+                    datasets: [{
+                        label: 'Statistics',
+                        data: [statisticsData.total_users, statisticsData.total_orders],
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.5)',
+                            'rgba(54, 162, 235, 0.5)'
+                        ],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+{% endblock %}
+
+
+

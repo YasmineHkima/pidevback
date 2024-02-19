@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Consultation{% endblock %}
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{{asset('styles/bootstrap4/bootstrap.min.css')}}">
+<link href="{{asset('plugins/font-awesome-4.7.0/css/font-awesome.min.css')}} " rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="{{asset('plugins/OwlCarousel2-2.2.1/owl.carousel.css')}}">
+<link rel="stylesheet" type="text/css" href="{{asset('plugins/OwlCarousel2-2.2.1/owl.theme.default.css')}}">
+<link rel="stylesheet" type="text/css" href="{{asset('plugins/OwlCarousel2-2.2.1/animate.css')}}">
+<link rel="stylesheet" type="text/css" href="{{asset('styles/main_styles.css')}}">
+<link rel="stylesheet" type="text/css" href="{{asset('styles/responsive.css')}}">
+<link rel='stylesheet' type='text/css' media='screen' href="{{asset('styles/main.css')}}"> 
+
+{% endblock %}
+   {% block body %}
+    <h1>Another Page</h1>
+    <a href="{{ path('app_consultation_telecons') }}" class="btn btn-primary">Go to My Page</a>
+<br><br><br><br><br>
+<button id="join-btn">Join Stream</button>
+<div id="stream-wrapper">
+        <div id="video-streams"></div>
+
+        <div id="stream-controls">
+            <button id="leave-btn">Leave Stream</button>
+            <button id="mic-btn">Mic On</button>
+            <button id="camera-btn">Camera on</button>
+        </div>
+    </div>
+
+    
+{% endblock %}
+{% block js %}
+<script src="https://download.agora.io/sdk/release/AgoraRTC_N.js"></script>
+<script src="{{asset('js/AgoraRTC_N-4.20.0.js')}}"></script>
+<script src='{{asset('js/main.js')}}'></script>
+{% endblock %}
+
+
+
