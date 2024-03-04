@@ -79,4 +79,14 @@ class DossiermedicalController extends AbstractController
 
         return $this->redirectToRoute('app_dossiermedical_index', [], Response::HTTP_SEE_OTHER);
     }
+
+    #[Route('/statistics', name:'dossier_medical_statistics') ]
+    public function statics(DossiermedicalRepository $dossiermedicalRepository): Response
+    {
+        $statistics = $dossiermedicalRepository->getGroupSangStatistics();
+
+        return $this->render('dossiermedical/statistics.html.twig', [
+            'statistics' => $statistics,
+        ]);
+    }
 }

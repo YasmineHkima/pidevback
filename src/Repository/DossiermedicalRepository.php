@@ -20,7 +20,21 @@ class DossiermedicalRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Dossiermedical::class);
     }
+    
+    public function construct(ManagerRegistry $registry)
+    {
+        parent::construct($registry, DossierMedical::class);
+    }
 
+    public function getGroupSangStatistics(): array
+    {
+        $query = $this->createQueryBuilder('d')
+            ->select('d.groupesang, COUNT(d.id) as count')
+            ->groupBy('d.groupesang')
+            ->getQuery();
+
+        return $query->getResult();
+    }
 //    /**
 //     * @return Dossiermedical[] Returns an array of Dossiermedical objects
 //     */

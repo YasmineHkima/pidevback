@@ -13,32 +13,28 @@ class Consultation
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
-    #[Assert\NotBlank(message:"Le patient ne peut pas être vide")]
-    private ?Patient $patient = null;
-
+    #[ORM\ManyToOne(targetEntity: Patient::class)]
+#[ORM\JoinColumn(name: 'patient_id', referencedColumnName: 'id')]
+private ?Patient $patient = null;
     #[ORM\OneToOne(cascade: ['persist', 'remove'])]
     private ?Docteur $Docteur = null;
 
     #[ORM\ManyToOne(inversedBy: 'consultations')]
     private ?Dossiermedical $dossiermedical = null;
 
+    #[ORM\Column(type: 'date')] 
+    #[Assert\NotNull(message:"La date ne peut pas être vide")]
+    #[Assert\GreaterThanOrEqual("today", message:"La date de consultation ne peut pas être antérieure à aujourd'hui")]
+    private ?\DateTimeInterface $date_consultation  = null ;
+
     #[ORM\Column(length: 255)]
-    #[Assert\NotBlank(message:"La date ne peut pas être vide")]
     #[Assert\Regex(
-        pattern: "/^([0-2][0-9]|3[0-1])\/(0[1-9]|1[0-2])\/\d{4}$/",
-        message: "La date doit être au format jj/mm/aaaa"
-    )]
-    private ?string $date_consultation = null;
+        pattern:"/^[a-zA-Z0-9._%+-]+@gmail\.com$/",
+      message:"The email must be in the format example@gmail.com."
+      )]
+    private ?string $email = null;
 
-    /*#[ORM\Column(length: 255)]
-    #[Assert\Regex(pattern:"/^[A-Za-zÀ-ÖØ-öø-ÿ\s]+$/",message:"Veuillez saisir uniquement des lettres")]
-        #[Assert\NotBlank(message:'Le contenu ne peut pas etre vide')]
-    private ?string $maladie_chronique = null;
-
-    #[ORM\Column(length: 255)]
-    private ?string $resultat_analyse = null;*/
-
+   
     public function getId(): ?int
     {
         return $this->id;
@@ -80,18 +76,30 @@ class Consultation
         return $this;
     }
 
-    public function getDateConsultation(): ?string
+
+    public function getDateConsultation(): ?\DateTimeInterface
     {
         return $this->date_consultation;
     }
 
-    public function setDateConsultation(string $date_consultation): static
+    public function setDateConsultation(?\DateTimeInterface $date_consultation): self
     {
         $this->date_consultation = $date_consultation;
 
         return $this;
     }
 
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+
+    public function setEmail(string $email): static
+    {
+        $this->email = $email;
+
+        return $this;
+    }
 
   
 }

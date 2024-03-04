@@ -16,6 +16,8 @@ class Consultation1Type extends AbstractType
             ->add('patient')
             ->add('Docteur')
             ->add('dossiermedical')
+            ->add('email')
+
         ;
     }
 

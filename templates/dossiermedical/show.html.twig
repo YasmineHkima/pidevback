@@ -1,10 +1,15 @@
-{% extends 'baseback.html.twig' %}
+{% extends 'base.html.twig' %}
 
-{% block title %}Dossiermedical{% endblock %}
+{% block title %}Dossier Médical{% endblock %}
 
 {% block content %}
-    <h1>Dossiermedical</h1>
-<br><br><br><br><br>
+    
+
+    <div class="mb-5">
+        <a href="{{ path('app_dossiermedical_index') }}" class="btn btn-secondary">Retour à la liste</a>
+        <a href="{{ path('app_dossiermedical_edit', {'id': dossiermedical.id}) }}" class="btn btn-primary">Modifier</a>
+    </div>
+
     <table class="table">
         <tbody>
             <tr>
@@ -12,23 +17,20 @@
                 <td>{{ dossiermedical.id }}</td>
             </tr>
             <tr>
-                <th>Groupesang</th>
+                <th>Groupe sanguin</th>
                 <td>{{ dossiermedical.groupesang }}</td>
             </tr>
             <tr>
-                <th>Maladiechronique</th>
+                <th>Maladie chronique</th>
                 <td>{{ dossiermedical.maladiechronique }}</td>
             </tr>
             <tr>
-                <th>Resultatanalyse</th>
+                <th>Résultat analyse</th>
                 <td>{{ dossiermedical.Resultatanalyse }}</td>
             </tr>
         </tbody>
     </table>
 
-    <a href="{{ path('app_dossiermedical_index') }}">back to list</a>
-
-    <a href="{{ path('app_dossiermedical_edit', {'id': dossiermedical.id}) }}">edit</a>
-
+    {# Utilisez la méthode include pour inclure le formulaire de suppression #}
     {{ include('dossiermedical/_delete_form.html.twig') }}
 {% endblock %}

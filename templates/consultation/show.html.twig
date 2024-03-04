@@ -15,6 +15,14 @@
                 <th>Date_consultation</th>
                 <td>{{ consultation.dateConsultation }}</td>
             </tr>
+            <tr>
+                <th>Dossiermedical_id</th>
+                <td>{{ consultation.dossiermedical }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ consultation.Email }}</td>
+            </tr>
          
          
         </tbody>
@@ -25,5 +33,6 @@
     <a href="{{ path('app_consultation_edit', {'id': consultation.id}) }}">edit</a>
 
     {{ include('consultation/_delete_form.html.twig') }}
+   
     
 {% endblock %}
